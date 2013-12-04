@@ -1,7 +1,9 @@
 try:
     import SimpleHTTPServer as http_server
+    from BaseHTTPServer import HTTPServer
 except ImportError:
     import http.server as http_server
+    from http.server import HTTPServer
 import socket
 from pprint import pprint
 import urlparse
@@ -36,7 +38,7 @@ class MyRequestHandler(http_server.SimpleHTTPRequestHandler):
         return self.do_GET()
 
 
-def test(HandlerClass = BaseHTTPRequestHandler,
+def test(HandlerClass = MyRequestHandler,
          ServerClass = HTTPServer, protocol="HTTP/1.0", port=8000):
     """Test the HTTP request handler class.
 
